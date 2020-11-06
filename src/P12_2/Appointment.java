@@ -1,10 +1,10 @@
 package P12_2;
 
 public class Appointment {
-    private String description = "";
-    private String date = "";
-    private String beginningTime = "";
-    private String endingTime = "";
+    private String description;
+    private String date;
+    private String beginningTime;
+    private String endingTime;
 
     public Appointment(String description, String date, String beginningTime, String endingTime){
         this.description = description;

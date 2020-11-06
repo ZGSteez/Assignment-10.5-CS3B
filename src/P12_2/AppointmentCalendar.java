@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class AppointmentCalendar {
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private final Scanner scanner = new Scanner(System.in);
-
+    private final int YEAR = 2020;
     public void addAppointment(Appointment anAppointment) {
         appointments.add(anAppointment);
     }
@@ -108,7 +108,7 @@ public class AppointmentCalendar {
                         status = false;
                     }
                 } else if (i == 2) {
-                    if ((Integer.parseInt(numbers[i]) <= 2019)) {
+                    if ((Integer.parseInt(numbers[i]) < YEAR)) {
                         status = false;
                     }
                 }
@@ -260,7 +260,6 @@ public class AppointmentCalendar {
 
             char choice = scanner.next().charAt(0);
 
-
             if (choice == '1' || choice == '2' || choice == '3') {
 
                 if (choice == '1') {
@@ -296,7 +295,6 @@ public class AppointmentCalendar {
                 } else {
                     showAppointments(getDate());
                 }
-
 
                 System.out.print("Do you want to run this program again?(Y/y) ");
                 char pick = scanner.next().charAt(0);
