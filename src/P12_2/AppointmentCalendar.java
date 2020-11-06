@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class AppointmentCalendar {
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private final Scanner scanner = new Scanner(System.in);
-    private int count = 0;
 
     public void addAppointment(Appointment anAppointment) {
         appointments.add(anAppointment);
@@ -21,13 +20,13 @@ public class AppointmentCalendar {
         addAppointment(new Appointment("Christmas Party", "12/25/2020", "07:00", "19:00"));
         addAppointment(new Appointment("Thanksgiving Party", "11/26/2020", "07:00", "19:00"));
         addAppointment(new Appointment("Dog Grooming", "12/01/2020", "15:15", "19:15"));
-
     }
 
     /**
      * Removes appointment at specified date and index
+     *
      * @param userPick - the order in which the appointment is displayed to the user
-     * @param date - date the user has picked
+     * @param date     - date the user has picked
      */
     public void removeAppointment(int userPick, String date) {
         int counter = userPick;
@@ -47,6 +46,7 @@ public class AppointmentCalendar {
 
     /**
      * Displays all appointments on a date
+     *
      * @param date - date the user entered
      */
     public void showAppointments(String date) {
@@ -67,6 +67,7 @@ public class AppointmentCalendar {
 
     /**
      * Asks the user for a date
+     *
      * @return - date of type String
      */
     public String getDate() {
@@ -84,7 +85,8 @@ public class AppointmentCalendar {
 
     /**
      * Checks to see if date entered is valid
-     * @param theDate  - date entered
+     *
+     * @param theDate - date entered
      * @return - true if date is valid, false if invalid
      */
     public boolean verifyDate(String theDate) {
@@ -122,6 +124,7 @@ public class AppointmentCalendar {
 
     /**
      * Retrieves the time from the user
+     *
      * @return - the time in the form of a String
      */
     public String getTime() {
@@ -137,6 +140,7 @@ public class AppointmentCalendar {
 
     /**
      * Checks to see if the time entered is valid
+     *
      * @param theTime - time entered
      * @return - true if valid, false if invalid
      */
@@ -164,6 +168,7 @@ public class AppointmentCalendar {
 
     /**
      * Asks user for description to appointment
+     *
      * @return - description of appointment
      */
     public String getDescription() {
@@ -176,6 +181,7 @@ public class AppointmentCalendar {
 
     /**
      * Checks if appointment exists in the list
+     *
      * @param date - the date
      * @return - false if no appointments on date exist, true if at least one appointment exists on that date
      */
@@ -193,6 +199,7 @@ public class AppointmentCalendar {
 
     /**
      * Checks if appointment that the user enters is valid
+     *
      * @param anAppointment - the appointment the user made
      * @return - false if appointment is invalid, true if valid
      */
@@ -209,11 +216,8 @@ public class AppointmentCalendar {
             {
                 status = false;
 
-            }
-
-
-            else if (a.returnDate().equals(anAppointment.returnDate())){
-                if (!compareTimes(a.returnEndingTime(), anAppointment.returnBeginningTime())){
+            } else if (a.returnDate().equals(anAppointment.returnDate())) {
+                if (!compareTimes(a.returnEndingTime(), anAppointment.returnBeginningTime())) {
                     status = false;
                 }
             }
@@ -221,6 +225,13 @@ public class AppointmentCalendar {
         return status;
     }
 
+    /**
+     * Compares times of appointments to check for overlap
+     *
+     * @param firstA  - appointment in list
+     * @param secondA - appointment being checked before being added
+     * @return - true if no overlap, false if there is overlap
+     */
     public boolean compareTimes(String firstA, String secondA) {
         boolean status = true;
         String[] firstAComponent = firstA.split(":");
@@ -229,7 +240,7 @@ public class AppointmentCalendar {
         int secondAMinutes = Integer.parseInt(secondAComponent[0]) * 60 + Integer.parseInt(secondAComponent[1]);
 //        System.out.println("First appointment beginning time: " + firstAMinutes);
 //        System.out.println("Second appointment beginning time: " + secondAMinutes);
-        if (firstAMinutes > secondAMinutes){
+        if (firstAMinutes > secondAMinutes) {
             status = false;
         }
         return status;
@@ -289,7 +300,6 @@ public class AppointmentCalendar {
 
                 System.out.print("Do you want to run this program again?(Y/y) ");
                 char pick = scanner.next().charAt(0);
-                count = 0;
 
                 if (!(Character.toUpperCase(pick) == 'Y'))
                     runAgain = false;
@@ -299,6 +309,7 @@ public class AppointmentCalendar {
 
     /**
      * Helper method for removeAppointment
+     *
      * @param date - the date
      * @return - count
      */
